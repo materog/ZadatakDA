@@ -2,7 +2,7 @@ CREATE TABLE Korisnici (
   KorisnikID INT IDENTITY(1,1) PRIMARY KEY,
   KorisnickoIme VARCHAR(50),
   Lozinka VARCHAR(50),
-  Uloga SMALLINT,
+  Uloga INT,
   Potvrda BIT
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE Studenti (
   KorisnikID INT,
   Ime VARCHAR(50),
   Prezime VARCHAR(50),
-  TipStudija SMALLINT,
+  TipStudija INT,
   FOREIGN KEY (KorisnikID) REFERENCES Korisnici (KorisnikID)
 );
 
@@ -30,7 +30,7 @@ CREATE TABLE Teme (
   Dostupnost BIT,
   NazivTeme VARCHAR(100),
   KratkiOpis VARCHAR(500),
-  Studij SMALLINT,
+  Studij INT,
   FOREIGN KEY (ProfesorID) REFERENCES Profesori (ProfesorID),
   FOREIGN KEY (StudentID) REFERENCES Studenti (StudentID)
 );
@@ -43,3 +43,6 @@ CREATE TABLE Prijave (
   FOREIGN KEY (TemaID) REFERENCES Teme (TemaID),
   FOREIGN KEY (StudentID) REFERENCES Studenti (StudentID)
 );
+
+INSERT INTO Korisnici (KorisnickoIme, Lozinka, Uloga, Potvrda)
+VALUES ('admin', 'admin', 1, 1);
