@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZadatakDA.Entiteti
 {
-    class Profesori
+    public class Profesori
     {
         public int ProfesorID { get; set; }
         public int KorisnikID { get; set; }

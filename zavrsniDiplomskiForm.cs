@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZadatakDA.Entiteti;
 using System.Data.SqlClient;
 
 namespace ZadatakDA
@@ -22,7 +24,7 @@ namespace ZadatakDA
         }
 
 
-        // Metoda za provjeru ispravnosti unosa
+        
         private bool IsValidInput()
         {
             //// Provjera polja za prijavu
@@ -40,14 +42,13 @@ namespace ZadatakDA
                 return false;
             }
 
-            // Provjera da ime i prezime sadrže samo slova
             if (!ContainsOnlyLetters(textBoxImeReg.Text) || !ContainsOnlyLetters(textBoxPrezimeReg.Text))
             {
                 MessageBox.Show("Ime i prezime smiju sadržavati samo slova.", "Neispravan unos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            // Provjera duplikata korisničkog imena i lozinke
+            // Provjera duplikata u bazi podataka
             if (IsDuplicateUser(textBoxUsernameReg.Text, textBoxPasswordReg.Text))
             {
                 MessageBox.Show("Korisničko ime i lozinka već postoje.", "Neispravan unos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -57,7 +58,6 @@ namespace ZadatakDA
             return true;
         }
 
-        // Metoda za provjeru sadržaja samo slova
         private bool ContainsOnlyLetters(string input)
         {
             foreach (char c in input)
@@ -98,15 +98,13 @@ namespace ZadatakDA
 
         }
 
-
-
         private bool RegisterUser()
         {
             string ime = textBoxImeReg.Text;
             string prezime = textBoxPrezimeReg.Text;
             string korisnickoIme = textBoxUsernameReg.Text;
             string lozinka = textBoxPasswordReg.Text;
-            int uloga = radioButtonStudent.Checked ? 2 : 3;
+            int uloga = radioButtonStudent.Checked ? 3 : 2;
             int tipStudija = radioButtonDiplomski.Checked ? 2 : 1;
             
             try
@@ -127,13 +125,12 @@ namespace ZadatakDA
 
                     if (uloga == 2)
                     {
-                        query = "INSERT INTO Profesori (KorisnikID, Ime, Prezime) " +
+                        query = "INSERT INTO Profesori (Ime, Prezime) " +
                             "VALUES (@KorisnikID, @Ime, @Prezime)";
                     }
                     else if (uloga == 3)
                     {
-                        command.Parameters.AddWithValue("@TipStudija", tipStudija);
-                        query = "INSERT INTO Studenti (KorisnikID, Ime, Prezime, TipStudija) " +
+                        query = "INSERT INTO Studenti (Ime, Prezime, TipStudija) " +
                             "VALUES (@KorisnikID, @Ime, @Prezime, @tipStudija)";
                     }
                     else
@@ -145,6 +142,7 @@ namespace ZadatakDA
                     command.Parameters.AddWithValue("@KorisnikID", korisnikID);
                     command.Parameters.AddWithValue("@Ime", ime);
                     command.Parameters.AddWithValue("@Prezime", prezime);
+                    command.Parameters.AddWithValue("@TipStudija", tipStudija);
                     command.ExecuteNonQuery();
 
                     return true;
@@ -168,7 +166,7 @@ namespace ZadatakDA
                 if (success)
                 {
                     MessageBox.Show("Registracija uspješna!");
-                    // Ovdje možete dodati logiku za prijavu korisnika nakon registracije
+                    tabControl1.SelectedIndex = 1;
                 }
                 else
                 {
