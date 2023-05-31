@@ -1,0 +1,10 @@
+C:\Users\vm-boris\source\repos\ZadatakDA\bin\Debug\ZadatakDA.exe.config
+C:\Users\vm-boris\source\repos\ZadatakDA\bin\Debug\ZadatakDA.exe
+C:\Users\vm-boris\source\repos\ZadatakDA\bin\Debug\ZadatakDA.pdb
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.csproj.AssemblyReference.cache
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.zavrsniDiplomskiForm.resources
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.Properties.Resources.resources
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.csproj.GenerateResource.cache
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.csproj.CoreCompileInputs.cache
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.exe
+C:\Users\vm-boris\source\repos\ZadatakDA\obj\Debug\ZadatakDA.pdb
